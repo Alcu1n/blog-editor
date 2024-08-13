@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
-import 'react-quill/dist/quill.snow.css'; // 引入Quill的样式
+import 'react-markdown-editor-lite/lib/index.css'; // 引入Markdown编辑器样式
 import styles from '../styles/NewPost.module.css'; // 引入CSS模块
+import MarkdownIt from 'markdown-it';
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const MdEditor = dynamic(() => import('react-markdown-editor-lite'), { ssr: false });
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 export default function NewPost() {
     const [title, setTitle] = useState('');
@@ -14,6 +16,10 @@ export default function NewPost() {
     const [author, setAuthor] = useState('');
     const [summary, setSummary] = useState('');
     const [content, setContent] = useState('');
+
+    const handleEditorChange = ({ html, text }) => {
+        setContent(text);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,21 +37,21 @@ export default function NewPost() {
         });
 
         if (response.status === 200) {
-            alert('Post created successfully!');
+            alert('吹水完成!');
         } else {
-            alert('Failed to create post.');
+            alert('发布失败');
         }
     };
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.heading}>吹水入口</h1>
+            <h1 className={styles.heading}>发布莱论</h1>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label className={styles.label}>标题</label>
                     <input
                         type="text"
-                        placeholder="文章标题"
+                        placeholder="吹水标题"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         className={styles.input}
@@ -85,7 +91,7 @@ export default function NewPost() {
                     <label className={styles.label}>作者</label>
                     <input
                         type="text"
-                        placeholder="文章作者"
+                        placeholder="莱"
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                         className={styles.input}
@@ -94,7 +100,7 @@ export default function NewPost() {
                 <div className={styles.formGroup}>
                     <label className={styles.label}>摘要</label>
                     <textarea
-                        placeholder="摘要总结"
+                        placeholder="莱摘..."
                         value={summary}
                         onChange={(e) => setSummary(e.target.value)}
                         className={styles.textarea}
@@ -102,12 +108,11 @@ export default function NewPost() {
                 </div>
                 <div className={styles.formGroup}>
                     <label className={styles.label}>正文内容</label>
-                    <ReactQuill
-                        theme="snow"
+                    <MdEditor
                         value={content}
-                        onChange={setContent}
-                        placeholder="开始吹水..."
-                        className={styles.reactQuill}
+                        style={{ height: "500px" }}
+                        renderHTML={(text) => mdParser.render(text)}
+                        onChange={handleEditorChange}
                     />
                 </div>
                 <button type="submit" className={styles.button}>发布</button>

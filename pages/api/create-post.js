@@ -1,11 +1,18 @@
 import axios from 'axios';
+import pinyin from 'pinyin';
 
 export default async function handler(req, res) {
     const { title, date, tags, draft, author, summary, content } = req.body;
 
-    // 将标题转换为拼音或仅保留字母和数字
+    // 使用 pinyin 将中文转换为拼音
     const toPinyin = (str) => {
-        return str.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+        return pinyin(str, {
+            style: pinyin.STYLE_NORMAL, // 普通风格的拼音，没有音调
+            heteronym: false // 禁用多音字模式
+        }).flat().join('') // 将二维数组展开为一维，并将所有拼音连接成一个字符串
+        .replace(/[^a-zA-Z0-9]+/g, '-') // 替换非字母和数字的字符为 "-"
+        .replace(/^-+|-+$/g, '') // 移除开头和结尾的 "-"
+        .toLowerCase(); // 转为小写
     };
 
     const fileName = toPinyin(title) + '.mdx';
