@@ -1,0 +1,113 @@
+/* NewPost.module.css */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.label {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #555;
+}
+
+.input, .textarea, .react-quill {
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus, .textarea:focus, .react-quill:focus-within {
+    border-color: #0070f3;
+    outline: none;
+}
+
+.textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.react-quill .ql-container {
+    min-height: 200px;
+    border-radius: 8px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    font-size: 1em;
+    font-weight: 500;
+    color: #555;
+}
+
+.button {
+    padding: 14px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #269d2c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #135516;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .heading {
+        font-size: 2em;
+    }
+
+    .form {
+        gap: 15px;
+    }
+
+    .button {
+        font-size: 1em;
+        padding: 12px 16px;
+    }
+}
