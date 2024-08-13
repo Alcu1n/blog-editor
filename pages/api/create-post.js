@@ -3,7 +3,13 @@ import axios from 'axios';
 export default async function handler(req, res) {
     const { title, date, tags, draft, author, summary, content } = req.body;
 
-    const fileName = title.replace(/\s+/g, '-').toLowerCase() + '.mdx';
+    // 将标题转换为拼音或仅保留字母和数字
+    const toPinyin = (str) => {
+        return str.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+    };
+
+    const fileName = toPinyin(title) + '.mdx';
+
     const fileContent = `---
 title: '${title}'
 date: '${date}'
