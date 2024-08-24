@@ -50,9 +50,9 @@ export default function NewPost() {
         });
 
         if (response.status === 200) {
-            alert('Post created successfully!');
+            alert('莱论成功发射!');
         } else {
-            alert('Failed to create post.');
+            alert('莱论没出去...');
         }
     };
 
