@@ -78,7 +78,7 @@ export default function NewPost() {
                 </div>
             ) : (
                 <div className={styles.container}>
-                    <h1 className={styles.heading}>莱论发布器</h1>
+                    <h1 className={styles.heading}>莱论发布</h1>
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>
                             <label className={styles.label}>标题</label>
@@ -117,14 +117,14 @@ export default function NewPost() {
                                     type="checkbox"
                                     checked={draft}
                                     onChange={(e) => setDraft(e.target.checked)}
-                                /> Draft
+                                /> 草稿
                             </label>
                         </div>
                         <div className={styles.formGroup}>
                             <label className={styles.label}>作者</label>
                             <input
                                 type="text"
-                                placeholder="莱大"
+                                placeholder="莱子"
                                 value={author}
                                 onChange={(e) => setAuthor(e.target.value)}
                                 className={styles.input}

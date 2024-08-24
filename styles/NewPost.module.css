@@ -71,21 +71,24 @@
 }
 
 .button {
-    padding: 14px 20px;
+    padding: 8px 16px;
     font-size: 1.2em;
     font-weight: bold;
-    background-color: #269d2c;
+    background: linear-gradient(135deg, #62159a, #260581);
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto;
+    display: inline-block;
+    transition: background 0.3s ease, transform 0.2s ease;
     text-align: center;
 }
 
 .button:hover {
-    background-color: #135516;
+    background-color: #132855;
     transform: translateY(-2px);
+    opacity: 0.8;
 }
 
 .button:active {

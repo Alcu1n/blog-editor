@@ -44,9 +44,9 @@ ${content}
             }
         );
 
-        res.status(200).json({ message: 'Post created successfully' });
+        res.status(200).json({ message: '莱论已发布！' });
     } catch (error) {
         console.error('Error creating post:', error.response?.data || error.message);
-        res.status(error.response?.status || 500).json({ message: 'Failed to create post' });
+        res.status(error.response?.status || 500).json({ message: '发布失败' });
     }
 }
